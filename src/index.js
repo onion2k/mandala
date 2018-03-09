@@ -13,7 +13,7 @@ function init() {
             y: document.body.clientHeight / 2
         },
         radius: Math.min(document.body.clientWidth, document.body.clientHeight) * 0.5,
-        segment: 36,
+        segment: 24,
     }
     
     let canvas = document.createElement('canvas');
@@ -38,6 +38,17 @@ function segment() {
 
     segmentCanvasCtx.fillStyle = 'red';
     segmentCanvasCtx.beginPath();
+    segmentCanvasCtx.moveTo(100, 0);
+    segmentCanvasCtx.quadraticCurveTo(0, p.center.y * 0.75, 100, p.center.y * 0.75);
+    segmentCanvasCtx.fill();
+
+    segmentCanvasCtx.beginPath();
+    segmentCanvasCtx.moveTo(100, 0);
+    segmentCanvasCtx.quadraticCurveTo(200, p.center.y * 0.75, 100, p.center.y * 0.75);
+    segmentCanvasCtx.fill();
+
+    segmentCanvasCtx.fillStyle = 'yellow';
+    segmentCanvasCtx.beginPath();
     segmentCanvasCtx.moveTo(100, 100);
     segmentCanvasCtx.quadraticCurveTo(50, p.center.y * 0.75, 100, p.center.y * 0.75);
     segmentCanvasCtx.fill();
@@ -47,7 +58,7 @@ function segment() {
     segmentCanvasCtx.quadraticCurveTo(150, p.center.y * 0.75, 100, p.center.y * 0.75);
     segmentCanvasCtx.fill();
 
-    segmentCanvasCtx.fillStyle = 'green';
+    segmentCanvasCtx.fillStyle = 'orange';
     segmentCanvasCtx.beginPath();
     segmentCanvasCtx.moveTo(100, p.center.y * 0.75);
     segmentCanvasCtx.quadraticCurveTo(50, p.center.y * 0.75, 100, p.center.y);
@@ -58,7 +69,7 @@ function segment() {
     segmentCanvasCtx.quadraticCurveTo(150, p.center.y * 0.75, 100, p.center.y);
     segmentCanvasCtx.fill();
 
-    segmentCanvasCtx.fillStyle = 'white';
+    segmentCanvasCtx.fillStyle = 'red';
     segmentCanvasCtx.beginPath();
     segmentCanvasCtx.arc(100, p.center.y * 0.75, 5, 0, Math.PI*2);
     segmentCanvasCtx.fill();
