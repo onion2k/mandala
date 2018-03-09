@@ -15,6 +15,8 @@ function init() {
         radius: Math.min(document.body.clientWidth, document.body.clientHeight) * 0.5,
         segment: 24,
     }
+
+    console.log(primitives)
     
     let canvas = document.createElement('canvas');
     canvas.width = primitives.width;
