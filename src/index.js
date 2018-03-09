@@ -30,48 +30,57 @@ function segment() {
 
     let p = primitives;
 
+    let width = 180;
+
     let segmentCanvas = document.createElement('canvas');
-    segmentCanvas.width  = 200;
-    segmentCanvas.height = p.height;
+    segmentCanvas.width  = width;
+    segmentCanvas.height = p.height / 2;
 
     let segmentCanvasCtx = segmentCanvas.getContext('2d');
 
+    segmentCanvasCtx.beginPath();
+    segmentCanvasCtx.moveTo(0, p.height/2);
+    segmentCanvasCtx.lineTo(width, p.height/2);
+    segmentCanvasCtx.lineTo(width/2, 0);
+    segmentCanvasCtx.closePath();
+    segmentCanvasCtx.clip();
+
     segmentCanvasCtx.fillStyle = 'red';
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(100, 0);
-    segmentCanvasCtx.quadraticCurveTo(0, p.center.y * 0.75, 100, p.center.y * 0.75);
+    segmentCanvasCtx.moveTo(width/2, 0);
+    segmentCanvasCtx.quadraticCurveTo(0, p.center.y * 0.75, width/2, p.center.y * 0.75);
     segmentCanvasCtx.fill();
 
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(100, 0);
-    segmentCanvasCtx.quadraticCurveTo(200, p.center.y * 0.75, 100, p.center.y * 0.75);
+    segmentCanvasCtx.moveTo(width/2, 0);
+    segmentCanvasCtx.quadraticCurveTo(width, p.center.y * 0.75, width/2, p.center.y * 0.75);
     segmentCanvasCtx.fill();
 
     segmentCanvasCtx.fillStyle = 'yellow';
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(100, 100);
-    segmentCanvasCtx.quadraticCurveTo(50, p.center.y * 0.75, 100, p.center.y * 0.75);
+    segmentCanvasCtx.moveTo(width/2, 100);
+    segmentCanvasCtx.quadraticCurveTo(width/2 - 50, p.center.y * 0.75, width/2, p.center.y * 0.75);
     segmentCanvasCtx.fill();
 
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(100, 100);
-    segmentCanvasCtx.quadraticCurveTo(150, p.center.y * 0.75, 100, p.center.y * 0.75);
+    segmentCanvasCtx.moveTo(width/2, 100);
+    segmentCanvasCtx.quadraticCurveTo(width/2 + 50, p.center.y * 0.75, width/2, p.center.y * 0.75);
     segmentCanvasCtx.fill();
 
     segmentCanvasCtx.fillStyle = 'orange';
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(100, p.center.y * 0.75);
-    segmentCanvasCtx.quadraticCurveTo(50, p.center.y * 0.75, 100, p.center.y);
+    segmentCanvasCtx.moveTo(width/2, p.center.y * 0.75);
+    segmentCanvasCtx.quadraticCurveTo(width/2 - 50, p.center.y * 0.75, width/2, p.center.y);
     segmentCanvasCtx.fill();
 
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(100, p.center.y * 0.75);
-    segmentCanvasCtx.quadraticCurveTo(150, p.center.y * 0.75, 100, p.center.y);
+    segmentCanvasCtx.moveTo(width/2, p.center.y * 0.75);
+    segmentCanvasCtx.quadraticCurveTo(width/2 + 50, p.center.y * 0.75, width/2, p.center.y);
     segmentCanvasCtx.fill();
 
     segmentCanvasCtx.fillStyle = 'red';
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.arc(100, p.center.y * 0.75, 5, 0, Math.PI*2);
+    segmentCanvasCtx.arc(width/2, p.center.y * 0.75, 5, 0, Math.PI*2);
     segmentCanvasCtx.fill();
 
     return segmentCanvas;
@@ -86,6 +95,7 @@ function render(){
     let ctx = document.querySelector('canvas').getContext('2d');
     let s = (Math.TAU / p.segment) / 2;
 
+    ctx.strokeStyle = 'white';
     ctx.fillStyle = 'black';
     ctx.fillRect(0,0,p.width,p.height);
 
