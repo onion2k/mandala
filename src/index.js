@@ -36,17 +36,29 @@ function segment() {
 
     let segmentCanvasCtx = segmentCanvas.getContext('2d');
 
-    segmentCanvasCtx.strokeStyle = 'red';
+    segmentCanvasCtx.fillStyle = 'red';
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(100, 0);
-    segmentCanvasCtx.quadraticCurveTo(100, p.center.y / 3, 0, p.center.y);
-    segmentCanvasCtx.stroke();
+    segmentCanvasCtx.moveTo(100, 100);
+    segmentCanvasCtx.quadraticCurveTo(50, p.center.y * 0.75, 100, p.center.y * 0.75);
+    segmentCanvasCtx.fill();
 
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(100, 0);
-    segmentCanvasCtx.quadraticCurveTo(100, p.center.y / 3, 200, p.center.y);
-    segmentCanvasCtx.stroke();
+    segmentCanvasCtx.moveTo(100, 100);
+    segmentCanvasCtx.quadraticCurveTo(150, p.center.y * 0.75, 100, p.center.y * 0.75);
+    segmentCanvasCtx.fill();
 
+    segmentCanvasCtx.fillStyle = 'green';
+    segmentCanvasCtx.beginPath();
+    segmentCanvasCtx.moveTo(100, p.center.y * 0.75);
+    segmentCanvasCtx.quadraticCurveTo(50, p.center.y * 0.75, 100, p.center.y);
+    segmentCanvasCtx.fill();
+
+    segmentCanvasCtx.beginPath();
+    segmentCanvasCtx.moveTo(100, p.center.y * 0.75);
+    segmentCanvasCtx.quadraticCurveTo(150, p.center.y * 0.75, 100, p.center.y);
+    segmentCanvasCtx.fill();
+
+    segmentCanvasCtx.strokeStyle = 'white';
     segmentCanvasCtx.beginPath();
     segmentCanvasCtx.arc(100, p.center.y/2, 5, 0, Math.PI*2);
     segmentCanvasCtx.stroke();
@@ -69,19 +81,8 @@ function render(){
     for (let x=0; x < p.segment; x++) {
 
         ctx.translate(p.center.x, p.center.y);
-
         ctx.rotate(s*2);
-
-        // ctx.fillStyle = '#222222';
-        // ctx.beginPath();
-        // ctx.moveTo(0, 0);
-        // ctx.lineTo(Math.cos(-s + Math.PI/2) * p.radius, Math.sin(-s + Math.PI/2) * p.radius);
-        // ctx.lineTo(Math.cos(s + Math.PI/2) * p.radius, Math.sin(s + Math.PI/2) * p.radius);
-        // ctx.closePath();
-        // ctx.fill();
-
         ctx.drawImage(seg, -seg.width/2, 0);
-
         ctx.translate(-p.center.x,-p.center.y);
 
     }
