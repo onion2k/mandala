@@ -58,10 +58,10 @@ function segment() {
     segmentCanvasCtx.quadraticCurveTo(150, p.center.y * 0.75, 100, p.center.y);
     segmentCanvasCtx.fill();
 
-    segmentCanvasCtx.strokeStyle = 'white';
+    segmentCanvasCtx.fillStyle = 'white';
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.arc(100, p.center.y/2, 5, 0, Math.PI*2);
-    segmentCanvasCtx.stroke();
+    segmentCanvasCtx.arc(100, p.center.y * 0.75, 5, 0, Math.PI*2);
+    segmentCanvasCtx.fill();
 
     return segmentCanvas;
 
