@@ -1,4 +1,4 @@
-import './mandala.scss';
+import './mandala.css';
 
 let primitives;
 Math.TAU = Math.PI * 2;
@@ -13,10 +13,10 @@ function init() {
             y: document.body.clientHeight / 2
         },
         radius: Math.min(document.body.clientWidth, document.body.clientHeight) * 0.5,
-        segment: 24,
-    }
+        segment: 16,
+    };
 
-    console.log(primitives)
+    console.log(primitives);
     
     let canvas = document.createElement('canvas');
     canvas.width = primitives.width;
@@ -32,7 +32,7 @@ function segment() {
 
     let p = primitives;
 
-    let width = 180;
+    let width = 85;
 
     let segmentCanvas = document.createElement('canvas');
     segmentCanvas.width  = width;
@@ -47,7 +47,7 @@ function segment() {
     segmentCanvasCtx.closePath();
     segmentCanvasCtx.clip();
 
-    segmentCanvasCtx.fillStyle = 'red';
+    segmentCanvasCtx.fillStyle = 'green';
     segmentCanvasCtx.beginPath();
     segmentCanvasCtx.moveTo(width/2, 0);
     segmentCanvasCtx.quadraticCurveTo(0, p.center.y * 0.75, width/2, p.center.y * 0.75);
@@ -79,6 +79,31 @@ function segment() {
     segmentCanvasCtx.moveTo(width/2, p.center.y * 0.75);
     segmentCanvasCtx.quadraticCurveTo(width/2 + 50, p.center.y * 0.75, width/2, p.center.y);
     segmentCanvasCtx.fill();
+
+
+    segmentCanvasCtx.fillStyle = 'blue';
+    segmentCanvasCtx.beginPath();
+    segmentCanvasCtx.moveTo(0, p.center.y * 0.75);
+    segmentCanvasCtx.quadraticCurveTo(width/2, p.center.y * 0.75, 0, p.center.y);
+    segmentCanvasCtx.fill();
+
+    segmentCanvasCtx.beginPath();
+    segmentCanvasCtx.moveTo(width, p.center.y * 0.75);
+    segmentCanvasCtx.quadraticCurveTo(width/2, p.center.y * 0.75, width, p.center.y);
+    segmentCanvasCtx.fill();
+
+    segmentCanvasCtx.strokeStyle = 'white';
+    segmentCanvasCtx.beginPath();
+    segmentCanvasCtx.moveTo(0,p.center.y/2 - 20);
+    segmentCanvasCtx.lineTo(width,p.center.y/2-20);
+    segmentCanvasCtx.stroke();
+
+
+    segmentCanvasCtx.fillStyle = 'pink';
+    segmentCanvasCtx.beginPath();
+    segmentCanvasCtx.arc(width/2, p.center.y * 0.25, 5, 0, Math.PI*2);
+    segmentCanvasCtx.fill();
+
 
     segmentCanvasCtx.fillStyle = 'red';
     segmentCanvasCtx.beginPath();
