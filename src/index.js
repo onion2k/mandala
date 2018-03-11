@@ -48,7 +48,7 @@ function segment() {
     segmentCanvasCtx.closePath();
     segmentCanvasCtx.clip();
 
-    segmentCanvasCtx.fillStyle = 'grey';
+    segmentCanvasCtx.fillStyle = 'white';
     segmentCanvasCtx.beginPath();
     segmentCanvasCtx.moveTo(middle, p.center.y * 0.25);
     segmentCanvasCtx.quadraticCurveTo(0, p.center.y * 0.5, middle, p.center.y * 0.75);
