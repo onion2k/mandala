@@ -35,16 +35,19 @@ function petal(ctx, pos, size, color) {
 
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.moveTo(p.middle, p.center.y * pos);
-    ctx.quadraticCurveTo(p.middle - (p.middle * size), p.center.y * (pos + size), p.middle, p.center.y * (pos + size));
-    ctx.quadraticCurveTo(p.middle + (p.middle * size), p.center.y * (pos + size), p.middle, p.center.y * pos);
+    ctx.moveTo(p.middle, pos);
+    ctx.quadraticCurveTo(p.middle - size, pos, p.middle, (pos + size));
+    ctx.quadraticCurveTo(p.middle + size, pos, p.middle, pos);
     ctx.fill();
 
 }
 
+let counter = 0;
+
 function segment() {
 
     let p = primitives;
+    let x = Math.sin(counter++ / 10) * 50 + p.center.y / 2;
 
     let segmentCanvas = document.createElement('canvas');
     segmentCanvas.width  = p._width;
@@ -71,8 +74,8 @@ function segment() {
     segmentCanvasCtx.quadraticCurveTo(p._width, p.center.y * 0.5, p.middle, p.center.y * 0.25);
     segmentCanvasCtx.fill();
 
+    petal(segmentCanvasCtx, x, -100, 'yellow');
 
-    petal(segmentCanvasCtx, 0.5, 0.25, 'yellow');
     // segmentCanvasCtx.fillStyle = 'yellow';
     // segmentCanvasCtx.beginPath();
     // segmentCanvasCtx.moveTo(p.middle, p.center.y * 0.5);
@@ -125,9 +128,12 @@ function segment() {
     segmentCanvasCtx.arc(p._width * 0.75, p.center.y - 15, 3, 0, Math.PI*2);
     segmentCanvasCtx.fill();
 
+    let widthAtHeight = (2 * (p.center.y * 0.75)) * Math.tan((180 / primitives.segment) * (Math.PI / 180));
+    let dotx = (p.middle - widthAtHeight/2) + (counter % widthAtHeight);
+    console.log(dotx, widthAtHeight)
     segmentCanvasCtx.fillStyle = 'red';
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.arc(p._width/2, p.center.y * 0.75, 5, 0, Math.PI*2);
+    segmentCanvasCtx.arc(dotx, p.center.y * 0.75, 5, 0, Math.PI*2);
     segmentCanvasCtx.fill();
 
     return segmentCanvas;
@@ -146,7 +152,7 @@ function render(){
     ctx.fillStyle = 'black';
     ctx.fillRect(0,0,p.width,p.height);
 
-    for (let x=0; x < p.segment; x++) {
+    for (let i=0; i < p.segment; i++) {
 
         ctx.translate(p.center.x, p.center.y);
         ctx.rotate(s*2);
@@ -159,6 +165,9 @@ function render(){
     ctx.beginPath();
     ctx.arc(p.center.x,p.center.y, 3, 0, Math.PI*2);
     ctx.fill();
+
+    requestAnimationFrame(render);
+
 }
 
 document.addEventListener('DOMContentLoaded', init);
