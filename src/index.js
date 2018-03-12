@@ -9,14 +9,12 @@ function init() {
         width: document.body.clientWidth,
         height: document.body.clientHeight,
         center: {
-            x: document.body.clientWidth / 2,
-            y: document.body.clientHeight / 2
+            x: document.body.clientWidth * 0.5,
+            y: document.body.clientHeight * 0.5
         },
         radius: Math.min(document.body.clientWidth, document.body.clientHeight) * 0.5,
         segment: 16,
     };
-
-    console.log(primitives);
     
     let canvas = document.createElement('canvas');
     canvas.width = primitives.width;
@@ -32,20 +30,25 @@ function segment() {
 
     let p = primitives;
 
-    let width = 85;
+    let width = (2 * p.radius) * Math.tan((180 / p.segment) * (Math.PI / 180)) + 2;
     let middle = width * 0.5;
 
     let segmentCanvas = document.createElement('canvas');
     segmentCanvas.width  = width;
-    segmentCanvas.height = p.height / 2;
+    segmentCanvas.height = p.radius;
 
     let segmentCanvasCtx = segmentCanvas.getContext('2d');
 
+    segmentCanvasCtx.strokeStyle = 'white';
+    segmentCanvasCtx.lineWidth = 2;
+    segmentCanvasCtx.fillStyle = '#222222';
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(0, p.height/2);
-    segmentCanvasCtx.lineTo(width, p.height/2);
+    segmentCanvasCtx.moveTo(0, p.height * 0.5);
+    segmentCanvasCtx.lineTo(width, p.height * 0.5);
     segmentCanvasCtx.lineTo(middle, 0);
     segmentCanvasCtx.closePath();
+    // segmentCanvasCtx.fill();
+    // segmentCanvasCtx.stroke();
     segmentCanvasCtx.clip();
 
     segmentCanvasCtx.fillStyle = 'white';
@@ -93,8 +96,8 @@ function segment() {
     segmentCanvasCtx.strokeStyle = 'white';
     segmentCanvasCtx.lineWidth = 1;
     segmentCanvasCtx.beginPath();
-    segmentCanvasCtx.moveTo(0,p.center.y/2 - 20);
-    segmentCanvasCtx.lineTo(width,p.center.y/2-20);
+    segmentCanvasCtx.moveTo(0,p.center.y * 0.5 - 20);
+    segmentCanvasCtx.lineTo(width,p.center.y * 0.5 -20);
     segmentCanvasCtx.stroke();
 
     segmentCanvasCtx.fillStyle = 'cyan';
@@ -122,7 +125,7 @@ function render(){
 
     let p = primitives;
     let ctx = document.querySelector('canvas').getContext('2d');
-    let s = (Math.TAU / p.segment) / 2;
+    let s = (Math.TAU / p.segment) * 0.5;
 
     ctx.strokeStyle = 'white';
     ctx.fillStyle = 'black';
@@ -132,7 +135,7 @@ function render(){
 
         ctx.translate(p.center.x, p.center.y);
         ctx.rotate(s*2);
-        ctx.drawImage(seg, -seg.width/2, 0);
+        ctx.drawImage(seg, -seg.width * 0.5, 0);
         ctx.translate(-p.center.x,-p.center.y);
 
     }
