@@ -130,7 +130,6 @@ function segment() {
 
     let widthAtHeight = (2 * (p.center.y * 0.75)) * Math.tan((180 / primitives.segment) * (Math.PI / 180));
     let dotx = (p.middle - widthAtHeight/2) + (counter % widthAtHeight);
-    console.log(dotx, widthAtHeight)
     segmentCanvasCtx.fillStyle = 'red';
     segmentCanvasCtx.beginPath();
     segmentCanvasCtx.arc(dotx, p.center.y * 0.75, 5, 0, Math.PI*2);
