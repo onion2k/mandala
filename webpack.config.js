@@ -6,7 +6,7 @@
     entry: {
       app: './src/index.js'
     },
-    mode: 'development',
+    mode: 'production',
     devtool: 'inline-source-map',
     module: {
         rules: [{
@@ -21,7 +21,7 @@
     plugins: [
       new CleanWebpackPlugin(['dist']),
       new HtmlWebpackPlugin({
-        title: 'Development'
+        title: 'Mandala'
       })
     ],
     output: {
