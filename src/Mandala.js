@@ -1,4 +1,5 @@
 import Petal from "./Petal";
+import Split from "./Split";
 import { Clip, Fill, widthAtHeight } from "./Utilities";
 import ColorScheme from "color-scheme";
 
@@ -45,7 +46,7 @@ export default class Mandala {
 
   segment() {
     let p = this.primitives;
-    let x = Math.sin(this.counter / 10) * 50 + p.center.y / 2;
+    let x = Math.abs(Math.sin(this.counter / 20) * 100);
 
     let c = this.segmentCanvasCtx;
 
@@ -70,21 +71,14 @@ export default class Mandala {
 
     color = 2;
 
-    c.fillStyle = "#" + this.primitives.colors[color];
-    c.beginPath();
-    c.moveTo(0, p.center.y * 0.75);
-    c.quadraticCurveTo(p._width * 0.5, p.center.y * 0.75, 0, p.center.y * 0.9);
-    c.fill();
-
-    c.beginPath();
-    c.moveTo(p._width, p.center.y * 0.75);
-    c.quadraticCurveTo(
-      p._width * 0.5,
-      p.center.y * 0.75,
-      p._width,
-      p.center.y * 0.9
+    Split(
+      this.primitives,
+      c,
+      p.center.y * 0.7,
+      widthAtHeight(p.segment, p.center.y * 0.75) * 0.5,
+      "#" + this.primitives.colors[color],
+      "#" + this.primitives.colors[color + 1]
     );
-    c.fill();
 
     color = 4;
 
@@ -99,7 +93,7 @@ export default class Mandala {
     Fill(
       this.primitives,
       c,
-      p.center.y * 0.35,
+      p.center.y * 0.36,
       "#" + this.primitives.colors[color]
     );
 
@@ -110,7 +104,8 @@ export default class Mandala {
       c,
       p.center.y * 0.25,
       widthAtHeight(p.segment, p.center.y * 0.25) - 10,
-      "#" + this.primitives.colors[color]
+      "#" + this.primitives.colors[color],
+      "#" + this.primitives.colors[color + 2]
     );
 
     color = 12;
@@ -120,7 +115,8 @@ export default class Mandala {
       c,
       p.center.y * 0.5 + 10,
       widthAtHeight(p.segment, p.center.y * 0.5) - 10,
-      "#" + this.primitives.colors[color]
+      "#" + this.primitives.colors[color],
+      "#" + this.primitives.colors[color + 2]
     );
 
     color = 14;
@@ -157,10 +153,10 @@ export default class Mandala {
 
   render() {
     let color = this.counter++;
-    this.primitives.colors = new ColorScheme()
-      .from_hue(color)
-      .scheme("tetrade")
-      .colors();
+    // this.primitives.colors = new ColorScheme()
+    //   .from_hue(color)
+    //   .scheme("tetrade")
+    //   .colors();
 
     this.segment();
 
