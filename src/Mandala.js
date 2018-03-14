@@ -15,7 +15,7 @@ export default class Mandala {
       radius: Math.min(el.clientWidth, el.clientHeight) * 0.5,
       segment: 16,
       colors: new ColorScheme()
-        .from_hue(0)
+        .from_hue(Math.floor(Math.random() * 256))
         .scheme("tetrade")
         .colors()
     };
@@ -133,7 +133,7 @@ export default class Mandala {
     c.arc(
       p.middle - widthAtHeight(p.segment, p.center.y * 0.9) * 0.25,
       p.center.y * 0.9,
-      3,
+      6,
       0,
       Math.PI * 2
     );
@@ -144,7 +144,7 @@ export default class Mandala {
     c.arc(
       p.middle + widthAtHeight(p.segment, p.center.y * 0.9) * 0.25,
       p.center.y * 0.9,
-      3,
+      6,
       0,
       Math.PI * 2
     );
