@@ -1,5 +1,6 @@
 import Petal from "./Petal";
 import { Clip, Fill, widthAtHeight } from "./Utilities";
+import ColorScheme from "color-scheme";
 
 export default class Mandala {
   constructor(el) {
@@ -11,7 +12,11 @@ export default class Mandala {
         y: el.clientHeight * 0.5
       },
       radius: Math.min(el.clientWidth, el.clientHeight) * 0.5,
-      segment: 16
+      segment: 16,
+      colors: new ColorScheme()
+        .from_hue(0)
+        .scheme("tetrade")
+        .colors()
     };
 
     this.primitives._width =
@@ -29,56 +34,43 @@ export default class Mandala {
     this.segmentCanvas.width = this.primitives._width;
     this.segmentCanvas.height = this.primitives.radius;
 
+    this.segmentCanvasCtx = this.segmentCanvas.getContext("2d");
+
+    Clip(this.primitives, this.segmentCanvasCtx);
+
     this.counter = 0;
 
     el.appendChild(this.canvas);
-
-    this.render();
   }
 
   segment() {
     let p = this.primitives;
-    let x = Math.sin(this.counter++ / 10) * 50 + p.center.y / 2;
+    let x = Math.sin(this.counter / 10) * 50 + p.center.y / 2;
 
-    let c = this.segmentCanvas.getContext("2d");
+    let c = this.segmentCanvasCtx;
 
-    Clip(this.primitives, c);
+    c.clearRect(0, 0, this.segmentCanvas.width, this.segmentCanvas.height);
+
+    let color = 0;
+
     Petal(
       this.primitives,
       c,
       p.center.y * 0.55,
       widthAtHeight(p.segment, p.center.y * 0.6),
-      "turquoise",
+      "#" + this.primitives.colors[color],
       "white"
     );
-    Fill(this.primitives, c, p.center.y * 0.6, "turquoise");
-
-    Petal(
+    Fill(
       this.primitives,
       c,
-      p.center.y * 0.33,
-      widthAtHeight(p.segment, p.center.y * 0.35),
-      "black",
-      "black"
-    );
-    Fill(this.primitives, c, p.center.y * 0.35, "black");
-
-    Petal(
-      this.primitives,
-      c,
-      p.center.y * 0.25,
-      widthAtHeight(p.segment, p.center.y * 0.25) - 10,
-      "yellow"
-    );
-    Petal(
-      this.primitives,
-      c,
-      p.center.y * 0.5 + 10,
-      widthAtHeight(p.segment, p.center.y * 0.5) - 10,
-      "blue"
+      p.center.y * 0.6,
+      "#" + this.primitives.colors[color]
     );
 
-    c.fillStyle = "red";
+    color = 2;
+
+    c.fillStyle = "#" + this.primitives.colors[color];
     c.beginPath();
     c.moveTo(0, p.center.y * 0.75);
     c.quadraticCurveTo(p._width * 0.5, p.center.y * 0.75, 0, p.center.y * 0.9);
@@ -94,12 +86,53 @@ export default class Mandala {
     );
     c.fill();
 
-    c.fillStyle = "white";
+    color = 4;
+
+    Petal(
+      this.primitives,
+      c,
+      p.center.y * 0.33,
+      widthAtHeight(p.segment, p.center.y * 0.35),
+      "#" + this.primitives.colors[color],
+      "black"
+    );
+    Fill(
+      this.primitives,
+      c,
+      p.center.y * 0.35,
+      "#" + this.primitives.colors[color]
+    );
+
+    color = 8;
+
+    Petal(
+      this.primitives,
+      c,
+      p.center.y * 0.25,
+      widthAtHeight(p.segment, p.center.y * 0.25) - 10,
+      "#" + this.primitives.colors[color]
+    );
+
+    color = 12;
+
+    Petal(
+      this.primitives,
+      c,
+      p.center.y * 0.5 + 10,
+      widthAtHeight(p.segment, p.center.y * 0.5) - 10,
+      "#" + this.primitives.colors[color]
+    );
+
+    color = 14;
+
+    c.fillStyle = "#" + this.primitives.colors[color];
     c.beginPath();
-    c.arc(p.middle, p.center.y * 0.8, 3, 0, Math.PI * 2);
+    c.arc(p.middle, p.center.y * 0.8, 10, 0, Math.PI * 2);
     c.fill();
 
-    c.fillStyle = "white";
+    color = 15;
+
+    c.fillStyle = "#" + this.primitives.colors[color];
     c.beginPath();
     c.arc(
       p.middle - widthAtHeight(p.segment, p.center.y * 0.9) * 0.25,
@@ -110,7 +143,7 @@ export default class Mandala {
     );
     c.fill();
 
-    c.fillStyle = "white";
+    c.fillStyle = "#" + this.primitives.colors[color];
     c.beginPath();
     c.arc(
       p.middle + widthAtHeight(p.segment, p.center.y * 0.9) * 0.25,
@@ -123,10 +156,16 @@ export default class Mandala {
   }
 
   render() {
+    let color = this.counter++;
+    this.primitives.colors = new ColorScheme()
+      .from_hue(color)
+      .scheme("tetrade")
+      .colors();
+
     this.segment();
 
     let p = this.primitives;
-    let ctx = document.querySelector("canvas").getContext("2d");
+    let ctx = this.canvas.getContext("2d");
     let s = Math.TAU / p.segment * 0.5;
 
     ctx.fillStyle = "black";
@@ -143,7 +182,5 @@ export default class Mandala {
     ctx.beginPath();
     ctx.arc(p.center.x, p.center.y, 3, 0, Math.PI * 2);
     ctx.fill();
-
-    // requestAnimationFrame(this.render.bind(this));
   }
 }
