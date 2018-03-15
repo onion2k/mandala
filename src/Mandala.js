@@ -46,7 +46,6 @@ export default class Mandala {
   }
 
   segment() {
-
     let p = this.primitives;
     let x = Math.abs(Math.sin(this.counter / 20) * 100);
 
@@ -123,36 +122,35 @@ export default class Mandala {
 
     color = 14;
 
-    // c.fillStyle = "#" + this.primitives.colors[color];
-    // c.beginPath();
-    // c.arc(p.middle, p.center.y * 0.8, 10, 0, Math.PI * 2);
-    // c.fill();
-    
-    // Dot(p, c, p.center.y * 0.8, 10, color);
+    Dot(
+      p,
+      c,
+      p.center.y * 0.475,
+      7,
+      "#" + this.primitives.colors[color],
+      "white",
+      2
+    );
+    Dot(
+      p,
+      c,
+      p.center.y * 0.8,
+      10,
+      "#" + this.primitives.colors[color],
+      "white"
+    );
 
     color = 15;
 
-    c.fillStyle = "#" + this.primitives.colors[color];
-    c.beginPath();
-    c.arc(
-      p.middle - widthAtHeight(p.segment, p.center.y * 0.9) * 0.25,
+    Dot(
+      p,
+      c,
       p.center.y * 0.9,
-      6,
-      0,
-      Math.PI * 2
+      5,
+      "#" + this.primitives.colors[color],
+      "white",
+      7
     );
-    c.fill();
-
-    c.fillStyle = "#" + this.primitives.colors[color];
-    c.beginPath();
-    c.arc(
-      p.middle + widthAtHeight(p.segment, p.center.y * 0.9) * 0.25,
-      p.center.y * 0.9,
-      6,
-      0,
-      Math.PI * 2
-    );
-    c.fill();
   }
 
   render() {
@@ -182,6 +180,5 @@ export default class Mandala {
     ctx.beginPath();
     ctx.arc(p.center.x, p.center.y, 3, 0, Math.PI * 2);
     ctx.fill();
-
   }
 }
