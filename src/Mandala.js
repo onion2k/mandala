@@ -1,5 +1,6 @@
 import Petal from "./Petal";
 import Split from "./Split";
+import Dot from "./Dot";
 import { Clip, Fill, widthAtHeight } from "./Utilities";
 import ColorScheme from "color-scheme";
 
@@ -45,6 +46,7 @@ export default class Mandala {
   }
 
   segment() {
+
     let p = this.primitives;
     let x = Math.abs(Math.sin(this.counter / 20) * 100);
 
@@ -121,10 +123,12 @@ export default class Mandala {
 
     color = 14;
 
-    c.fillStyle = "#" + this.primitives.colors[color];
-    c.beginPath();
-    c.arc(p.middle, p.center.y * 0.8, 10, 0, Math.PI * 2);
-    c.fill();
+    // c.fillStyle = "#" + this.primitives.colors[color];
+    // c.beginPath();
+    // c.arc(p.middle, p.center.y * 0.8, 10, 0, Math.PI * 2);
+    // c.fill();
+    
+    // Dot(p, c, p.center.y * 0.8, 10, color);
 
     color = 15;
 
@@ -178,5 +182,6 @@ export default class Mandala {
     ctx.beginPath();
     ctx.arc(p.center.x, p.center.y, 3, 0, Math.PI * 2);
     ctx.fill();
+
   }
 }
