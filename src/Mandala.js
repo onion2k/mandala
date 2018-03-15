@@ -19,6 +19,9 @@ export default class Mandala {
         .from_hue(Math.floor(Math.random() * 256))
         .scheme("tetrade")
         .colors()
+        .map(i => {
+          return "#" + i;
+        })
     };
 
     this.primitives._width =
@@ -47,6 +50,7 @@ export default class Mandala {
 
   segment() {
     let p = this.primitives;
+    let colors = this.primitives.colors;
     let x = Math.abs(Math.sin(this.counter / 20) * 100);
 
     let c = this.segmentCanvasCtx;
@@ -60,15 +64,10 @@ export default class Mandala {
       c,
       p.center.y * 0.55,
       widthAtHeight(p.segment, p.center.y * 0.6),
-      "#" + this.primitives.colors[color],
+      colors[color],
       "white"
     );
-    Fill(
-      this.primitives,
-      c,
-      p.center.y * 0.6,
-      "#" + this.primitives.colors[color]
-    );
+    Fill(this.primitives, c, p.center.y * 0.6, colors[color]);
 
     color = 2;
 
@@ -77,8 +76,8 @@ export default class Mandala {
       c,
       p.center.y * 0.7,
       widthAtHeight(p.segment, p.center.y * 0.75) * 0.5,
-      "#" + this.primitives.colors[color],
-      "#" + this.primitives.colors[color + 1]
+      colors[color],
+      colors[color + 1]
     );
 
     color = 4;
@@ -88,15 +87,10 @@ export default class Mandala {
       c,
       p.center.y * 0.33,
       widthAtHeight(p.segment, p.center.y * 0.35),
-      "#" + this.primitives.colors[color],
+      colors[color],
       "black"
     );
-    Fill(
-      this.primitives,
-      c,
-      p.center.y * 0.36,
-      "#" + this.primitives.colors[color]
-    );
+    Fill(this.primitives, c, p.center.y * 0.36, colors[color]);
 
     color = 8;
 
@@ -105,8 +99,8 @@ export default class Mandala {
       c,
       p.center.y * 0.25,
       widthAtHeight(p.segment, p.center.y * 0.25) - 10,
-      "#" + this.primitives.colors[color],
-      "#" + this.primitives.colors[color + 2]
+      colors[color],
+      colors[color + 2]
     );
 
     color = 12;
@@ -116,41 +110,19 @@ export default class Mandala {
       c,
       p.center.y * 0.5 + 10,
       widthAtHeight(p.segment, p.center.y * 0.5) - 10,
-      "#" + this.primitives.colors[color],
-      "#" + this.primitives.colors[color + 2]
+      colors[color],
+      colors[color + 2]
     );
 
     color = 14;
 
-    Dot(
-      p,
-      c,
-      p.center.y * 0.475,
-      7,
-      "#" + this.primitives.colors[color],
-      "white",
-      2
-    );
-    Dot(
-      p,
-      c,
-      p.center.y * 0.8,
-      10,
-      "#" + this.primitives.colors[color],
-      "white"
-    );
+    // Dot(p, c, p.center.y * 0.475, 7, colors[color], "white", 2);
+    // Dot(p, c, p.center.y * 0.8, 10, colors[color], "white");
 
     color = 15;
 
-    Dot(
-      p,
-      c,
-      p.center.y * 0.9,
-      5,
-      "#" + this.primitives.colors[color],
-      "white",
-      7
-    );
+    Dot(p, c, p.center.y * 0.9, 5, colors[color], "white", 9);
+    Dot(p, c, p.center.y * 0.925, 5, colors[color], "white", 5);
   }
 
   render() {

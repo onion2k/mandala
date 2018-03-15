@@ -12,7 +12,7 @@ function init() {
 
 function animate() {
   m.render();
-  requestAnimationFrame(animate);
+  // requestAnimationFrame(animate);
 }
 
 document.addEventListener("DOMContentLoaded", init);
