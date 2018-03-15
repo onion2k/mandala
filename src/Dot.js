@@ -10,8 +10,8 @@ export default function Dot(p, c, pos, size, color, stroke, count, dist) {
   for (let i = 0; i < count; i++) {
     c.beginPath();
 
-    let x = Math.sin((ang * i + 1 - arc / 2) * r) * pos + p.middle;
-    let y = Math.cos((ang * i + 1 - arc / 2) * r) * pos;
+    let x = Math.sin((ang * i - arc / 2) * r) * pos + p.middle;
+    let y = Math.cos((ang * i - arc / 2) * r) * pos;
 
     c.arc(x, y, size, 0, Math.PI * 2);
     c.fill();
