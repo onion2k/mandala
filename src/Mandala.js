@@ -116,13 +116,29 @@ export default class Mandala {
 
     color = 14;
 
-    // Dot(p, c, p.center.y * 0.475, 7, colors[color], "white", 2);
-    // Dot(p, c, p.center.y * 0.8, 10, colors[color], "white");
+    Dot(p, c, p.center.y * 0.475, 7, colors[color], "white", 2);
+    Dot(p, c, p.center.y * 0.8, 10, colors[color], "white");
 
     color = 15;
 
-    Dot(p, c, p.center.y * 0.9, 5, colors[color], "white", 9);
-    Dot(p, c, p.center.y * 0.925, 5, colors[color], "white", 5);
+    Dot(
+      p,
+      c,
+      p.center.y * 0.875,
+      5,
+      colors[color],
+      "white",
+      1 + Math.floor(Math.random() * 4)
+    );
+    Dot(
+      p,
+      c,
+      p.center.y * 0.925,
+      5,
+      colors[color],
+      "white",
+      2 + Math.floor(Math.random() * 5)
+    );
   }
 
   render() {
