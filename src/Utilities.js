@@ -7,8 +7,8 @@ export function Clip(p, c) {
   c.lineWidth = 2;
   c.fillStyle = "#222222";
   c.beginPath();
-  c.moveTo(0, p.height * 0.5);
-  c.lineTo(p._width, p.height * 0.5);
+  c.moveTo(0, p.radius);
+  c.lineTo(p._width, p.radius);
   c.lineTo(p.middle, 0);
   c.closePath();
   // c.fill();

@@ -65,20 +65,20 @@ export default class Mandala {
     Petal(
       this.primitives,
       c,
-      p.center.y * 0.55,
-      widthAtHeight(p.segment, p.center.y * 0.6),
+      p.radius * 0.55,
+      widthAtHeight(p.segment, p.radius * 0.6),
       colors[color],
       "white"
     );
-    Fill(this.primitives, c, p.center.y * 0.6, colors[color]);
+    Fill(this.primitives, c, p.radius * 0.6, colors[color]);
 
     color = 2;
 
     Split(
       this.primitives,
       c,
-      p.center.y * 0.575,
-      widthAtHeight(p.segment, p.center.y * 0.75) * 0.5,
+      p.radius * 0.575,
+      widthAtHeight(p.segment, p.radius * 0.75) * 0.5,
       colors[color],
       colors[color + 1]
     );
@@ -88,20 +88,20 @@ export default class Mandala {
     Petal(
       this.primitives,
       c,
-      p.center.y * 0.33,
-      widthAtHeight(p.segment, p.center.y * 0.37),
+      p.radius * 0.33,
+      widthAtHeight(p.segment, p.radius * 0.37),
       colors[color],
       "black"
     );
-    Fill(this.primitives, c, p.center.y * 0.36, colors[color]);
+    Fill(this.primitives, c, p.radius * 0.36, colors[color]);
 
     color = 8;
 
     Petal(
       this.primitives,
       c,
-      p.center.y * 0.3475,
-      widthAtHeight(p.segment, p.center.y * 0.275),
+      p.radius * 0.3475,
+      widthAtHeight(p.segment, p.radius * 0.275),
       colors[color],
       "black"
     );
@@ -111,8 +111,8 @@ export default class Mandala {
     Petal(
       this.primitives,
       c,
-      p.center.y * 0.25,
-      widthAtHeight(p.segment, p.center.y * 0.1),
+      p.radius * 0.25,
+      widthAtHeight(p.segment, p.radius * 0.1),
       colors[color],
       "white"
     );
@@ -122,20 +122,20 @@ export default class Mandala {
     Petal(
       this.primitives,
       c,
-      p.center.y * 0.5 + 10,
-      widthAtHeight(p.segment, p.center.y * 0.5) - 10,
+      p.radius * 0.5 + 10,
+      widthAtHeight(p.segment, p.radius * 0.5) - 10,
       colors[color],
       "black"
     );
 
-    Arch(p, c, p.center.y * 0.1, 100, "white", null, 1, 1.5);
+    Arch(p, c, p.radius * 0.1, 100, "white", null, 1, 1.5);
 
     color = 14;
 
     Arch(
       p,
       c,
-      p.center.y * 0.485,
+      p.radius * 0.485,
       10,
       colors[color],
       null,
@@ -148,7 +148,7 @@ export default class Mandala {
     Dot(
       p,
       c,
-      p.center.y * 0.8,
+      p.radius * 0.8,
       8,
       colors[color],
       "white",
@@ -157,7 +157,7 @@ export default class Mandala {
     Dot(
       p,
       c,
-      p.center.y * 0.85,
+      p.radius * 0.85,
       5,
       colors[color],
       "white",
