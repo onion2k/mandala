@@ -89,7 +89,7 @@ export default class Mandala {
       this.primitives,
       c,
       p.center.y * 0.33,
-      widthAtHeight(p.segment, p.center.y * 0.35),
+      widthAtHeight(p.segment, p.center.y * 0.37),
       colors[color],
       "black"
     );
@@ -103,7 +103,7 @@ export default class Mandala {
       p.center.y * 0.3475,
       widthAtHeight(p.segment, p.center.y * 0.275),
       colors[color],
-      colors[color + 2]
+      "black"
     );
 
     color = 10;
@@ -114,7 +114,7 @@ export default class Mandala {
       p.center.y * 0.25,
       widthAtHeight(p.segment, p.center.y * 0.1),
       colors[color],
-      colors[color + 2]
+      "white"
     );
 
     color = 12;
@@ -125,7 +125,7 @@ export default class Mandala {
       p.center.y * 0.5 + 10,
       widthAtHeight(p.segment, p.center.y * 0.5) - 10,
       colors[color],
-      colors[color + 2]
+      "black"
     );
 
     Arch(p, c, p.center.y * 0.1, 100, "white", null, 1, 1.5);
