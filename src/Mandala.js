@@ -1,6 +1,9 @@
 import Petal from "./Petal";
 import Split from "./Split";
 import Dot from "./Dot";
+
+import Arch from "./Arch";
+
 import { Clip, Fill, widthAtHeight } from "./Utilities";
 import ColorScheme from "color-scheme";
 
@@ -74,7 +77,7 @@ export default class Mandala {
     Split(
       this.primitives,
       c,
-      p.center.y * 0.7,
+      p.center.y * 0.575,
       widthAtHeight(p.segment, p.center.y * 0.75) * 0.5,
       colors[color],
       colors[color + 1]
@@ -114,18 +117,28 @@ export default class Mandala {
       colors[color + 2]
     );
 
+    Arch(p, c, p.center.y * 0.1, 100, "white", null, 1, 1.5);
+
     color = 14;
 
-    Dot(p, c, p.center.y * 0.475, 7, colors[color], "white", 2);
-    Dot(p, c, p.center.y * 0.8, 10, colors[color], "white");
+    Arch(
+      p,
+      c,
+      p.center.y * 0.485,
+      10,
+      colors[color],
+      null,
+      2 + Math.floor(Math.random() * 5),
+      1.5
+    );
 
     color = 15;
 
     Dot(
       p,
       c,
-      p.center.y * 0.875,
-      5,
+      p.center.y * 0.8,
+      8,
       colors[color],
       "white",
       1 + Math.floor(Math.random() * 4)
@@ -133,7 +146,7 @@ export default class Mandala {
     Dot(
       p,
       c,
-      p.center.y * 0.925,
+      p.center.y * 0.85,
       5,
       colors[color],
       "white",
