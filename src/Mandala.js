@@ -100,8 +100,19 @@ export default class Mandala {
     Petal(
       this.primitives,
       c,
+      p.center.y * 0.3475,
+      widthAtHeight(p.segment, p.center.y * 0.275),
+      colors[color],
+      colors[color + 2]
+    );
+
+    color = 10;
+
+    Petal(
+      this.primitives,
+      c,
       p.center.y * 0.25,
-      widthAtHeight(p.segment, p.center.y * 0.25) - 10,
+      widthAtHeight(p.segment, p.center.y * 0.1),
       colors[color],
       colors[color + 2]
     );
