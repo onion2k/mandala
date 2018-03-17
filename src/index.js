@@ -8,7 +8,7 @@ let m;
 
 function animate() {
   m.render();
-  requestAnimationFrame(animate);
+  // requestAnimationFrame(animate);
 }
 
 function init() {
