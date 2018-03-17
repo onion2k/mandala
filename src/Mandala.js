@@ -167,10 +167,6 @@ export default class Mandala {
 
   render() {
     let color = this.counter++;
-    // this.primitives.colors = new ColorScheme()
-    //   .from_hue(color)
-    //   .scheme("tetrade")
-    //   .colors();
 
     this.segment();
 
