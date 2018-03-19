@@ -52,7 +52,16 @@ export default class Mandala {
   }
 
   change(e) {
-    console.log(e.target.value);
+    let value = e.target.value.toLowerCase();
+    let c = value.charCodeAt(0) || 0;
+    this.primitives.colors = new ColorScheme()
+      .from_hue(c / 32 * 256)
+      .scheme("tetrade")
+      .colors()
+      .map(i => {
+        return "#" + i;
+      });
+    this.render();
   }
 
   segment() {

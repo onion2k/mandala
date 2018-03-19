@@ -13,7 +13,7 @@ function animate() {
 
 function init() {
   m = new Mandala(document.body);
-  new Seeder(document.getElementById("seed"), m.change);
+  new Seeder(document.getElementById("seed"), m.change.bind(m));
   animate();
 }
 
