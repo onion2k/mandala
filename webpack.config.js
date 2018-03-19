@@ -26,7 +26,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
-      title: "Mandala"
+      title: "Mandala",
+      template: "./src/index.html"
     })
   ],
   output: {
