@@ -28,23 +28,33 @@ canvas {
 
 form {
   display: flex;
+  font-family: Arial, Helvetica, sans-serif;
   flex-direction: row;
-  font-size: 3rem;
-  font-family: "Nothing You Could Do", cursive;
+  font-size: 2.4rem;
+  background-color: #222222;
+  border: 1px solid #444444;
+  border-radius: 4px;
 }
 
 label {
   flex: 1;
   color: white;
   padding: 10px 10px 0px 10px;
+  border-right: 1px solid #444444;
 }
 
 input {
   flex: 3;
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-family: "Nothing You Could Do", cursive;
   padding: 10px 10px 0px 10px;
   background-color: transparent;
   border: 0;
   color: white;
+  border-radius: 0 4px 4px 0;
+}
+
+input:focus {
+  outline: none;
+  background-color: #448844;
 }

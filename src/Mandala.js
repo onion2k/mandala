@@ -51,6 +51,10 @@ export default class Mandala {
     el.appendChild(this.canvas);
   }
 
+  change(e) {
+    console.log(e.target.value);
+  }
+
   segment() {
     let p = this.primitives;
     let colors = this.primitives.colors;
