@@ -86,6 +86,42 @@ export default class Mandala {
 
     let color = 0;
 
+    let patternCanvas = document.createElement("canvas");
+    patternCanvas.width = 100;
+    patternCanvas.height = 100;
+    let pctx = patternCanvas.getContext("2d");
+
+    pctx.fillStyle = "white";
+    pctx.fillRect(0, 0, 100, 100);
+
+    pctx.lineWidth = 2;
+    pctx.strokeStyle = "red";
+
+    for (let b = 0; b < 10; b++) {
+      pctx.beginPath();
+      pctx.moveTo(b * 10, 0);
+      pctx.bezierCurveTo(100, 0, 0, 100, 100 - b * 10, 100);
+      pctx.stroke();
+      pctx.closePath();
+    }
+
+    // pctx.moveTo(-10, -10);
+    // pctx.bezierCurveTo(0, -50, 0, 50, 110, 110);
+
+    let pattern = c.createPattern(patternCanvas, "repeat");
+
+    Petal(
+      this.primitives,
+      c,
+      p.radius * 0.65,
+      widthAtHeight(p.segment, p.radius * 0.75),
+      pattern,
+      "white"
+    );
+    Fill(this.primitives, c, p.radius * 0.7, pattern);
+
+    color = 1;
+
     Petal(
       this.primitives,
       c,
@@ -167,26 +203,26 @@ export default class Mandala {
       1.5
     );
 
-    color = 15;
+    // color = 15;
 
-    Dot(
-      p,
-      c,
-      p.radius * 0.8,
-      8,
-      colors[color],
-      "white",
-      1 + Math.floor(Math.random() * 4)
-    );
-    Dot(
-      p,
-      c,
-      p.radius * 0.85,
-      5,
-      colors[color],
-      "white",
-      2 + Math.floor(Math.random() * 5)
-    );
+    // Dot(
+    //   p,
+    //   c,
+    //   p.radius * 0.9,
+    //   8,
+    //   colors[color],
+    //   "white",
+    //   1 + Math.floor(Math.random() * 4)
+    // );
+    // Dot(
+    //   p,
+    //   c,
+    //   p.radius * 0.85,
+    //   5,
+    //   colors[color],
+    //   "white",
+    //   2 + Math.floor(Math.random() * 5)
+    // );
   }
 
   render() {
