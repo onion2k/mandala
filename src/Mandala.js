@@ -51,9 +51,7 @@ export default class Mandala {
     el.appendChild(this.canvas);
   }
 
-  change(e) {
-    let value = e.target.value.toLowerCase();
-    let c = value.charCodeAt(0) || 0;
+  change(c) {
     this.primitives.colors = new ColorScheme()
       .from_hue(c / 32 * 256)
       .scheme("tetrade")
