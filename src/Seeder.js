@@ -5,7 +5,6 @@ export default class Seeder {
     this.callback = callback;
     let caller = this.call.bind(this);
     el.addEventListener("keyup", debounce(caller, 250));
-    el.addEventListener("click", debounce(caller, 250));
     return this;
   }
   call(e) {
