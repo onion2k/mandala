@@ -11,14 +11,11 @@ export function Clip(p, c) {
   c.lineTo(p._width, p.radius);
   c.lineTo(p.middle, 0);
   c.closePath();
-  // c.fill();
-  // c.stroke();
   c.clip();
 }
 
 export function Fill(p, c, pos, color) {
   let wah = widthAtHeight(p.segment, pos);
-
   c.fillStyle = color;
   c.beginPath();
   c.moveTo(p.middle - wah / 2 - 5, pos);

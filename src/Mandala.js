@@ -9,14 +9,32 @@ import ColorScheme from "color-scheme";
 
 export default class Mandala {
   constructor(el) {
+    this.el = el;
+    this.primitives = {};
+
+    this.canvas = document.createElement("canvas");
+    this.segmentCanvas = document.createElement("canvas");
+
+    this.calculateSize(el);
+
+    this.segmentCanvasCtx = this.segmentCanvas.getContext("2d");
+
+    Clip(this.primitives, this.segmentCanvasCtx);
+
+    this.counter = 0;
+
+    el.appendChild(this.canvas);
+  }
+
+  calculateSize(el) {
     this.primitives = {
-      width: el.clientWidth,
-      height: el.clientHeight,
+      width: this.el.clientWidth,
+      height: this.el.clientHeight,
       center: {
-        x: el.clientWidth * 0.5,
-        y: el.clientHeight * 0.5
+        x: this.el.clientWidth * 0.5,
+        y: this.el.clientHeight * 0.5
       },
-      radius: Math.min(el.clientWidth, el.clientHeight) * 0.5,
+      radius: Math.min(this.el.clientWidth, this.el.clientHeight) * 0.5,
       segment: 16,
       colors: new ColorScheme()
         .from_hue(Math.floor(Math.random() * 256))
@@ -34,21 +52,11 @@ export default class Mandala {
       2;
     this.primitives.middle = this.primitives._width * 0.5;
 
-    this.canvas = document.createElement("canvas");
     this.canvas.width = this.primitives.width;
     this.canvas.height = this.primitives.height;
 
-    this.segmentCanvas = document.createElement("canvas");
     this.segmentCanvas.width = this.primitives._width;
     this.segmentCanvas.height = this.primitives.radius;
-
-    this.segmentCanvasCtx = this.segmentCanvas.getContext("2d");
-
-    Clip(this.primitives, this.segmentCanvasCtx);
-
-    this.counter = 0;
-
-    el.appendChild(this.canvas);
   }
 
   change(c) {
@@ -60,6 +68,11 @@ export default class Mandala {
         return "#" + i;
       });
     this.render();
+  }
+
+  resize() {
+    this.calculateSize();
+    Clip(this.primitives, this.segmentCanvasCtx);
   }
 
   segment() {

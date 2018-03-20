@@ -13,7 +13,12 @@ function animate() {
 
 function init() {
   m = new Mandala(document.body);
-  new Seeder(document.getElementById("seed"), m.change.bind(m));
+  window.addEventListener("resize", () => {
+    m.resize();
+    m.render();
+  });
+  let s = new Seeder(document.getElementById("seed"), m.change.bind(m));
+  s.add(document.body, "click");
   animate();
 }
 
