@@ -94,15 +94,19 @@ export default class Mandala {
     pctx.fillStyle = "white";
     pctx.fillRect(0, 0, 100, 100);
 
-    pctx.lineWidth = 2;
-    pctx.strokeStyle = "red";
+    pctx.lineWidth = 5;
+    pctx.fillStyle = "red";
 
-    for (let b = 0; b < 10; b++) {
+    for (let b = 0; b < 20; b++) {
+      pctx.fillStyle = "rgb(" + (255 - b * 10) + ", 0, 0)";
       pctx.beginPath();
-      pctx.moveTo(b * 10, 0);
-      pctx.bezierCurveTo(100, 0, 0, 100, 100 - b * 10, 100);
-      pctx.stroke();
+      pctx.moveTo(0 + b * 10, 0);
+      // pctx.lineTo(0 + b * 10, 100);
+      pctx.bezierCurveTo(0 + b * 10, 0, -100 + b * 10, 100, b * 10, 100);
+      pctx.lineTo(100, 100);
+      pctx.lineTo(100, 0);
       pctx.closePath();
+      pctx.fill();
     }
 
     // pctx.moveTo(-10, -10);
