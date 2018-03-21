@@ -84,8 +84,6 @@ export default class Mandala {
 
     c.clearRect(0, 0, this.segmentCanvas.width, this.segmentCanvas.height);
 
-    let color = 0;
-
     let patternCanvas = document.createElement("canvas");
     patternCanvas.width = 100;
     patternCanvas.height = 100;
@@ -95,7 +93,8 @@ export default class Mandala {
     pctx.fillRect(0, 0, 100, 100);
 
     pctx.lineWidth = 5;
-    pctx.fillStyle = "red";
+
+    let color = 1;
 
     for (let b = 0; b < 20; b++) {
       pctx.fillStyle = b % 2 === 0 ? colors[color] : colors[color + 1];
@@ -205,24 +204,8 @@ export default class Mandala {
 
     // color = 15;
 
-    // Dot(
-    //   p,
-    //   c,
-    //   p.radius * 0.9,
-    //   8,
-    //   colors[color],
-    //   "white",
-    //   1 + Math.floor(Math.random() * 4)
-    // );
-    // Dot(
-    //   p,
-    //   c,
-    //   p.radius * 0.85,
-    //   5,
-    //   colors[color],
-    //   "white",
-    //   2 + Math.floor(Math.random() * 5)
-    // );
+    Dot(p, c, p.radius * 0.95, 10, colors[color], "white", 1);
+    Dot(p, c, p.radius * 0.925, 6, colors[color], "white", 2);
   }
 
   render() {
