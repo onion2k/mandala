@@ -97,20 +97,16 @@ export default class Mandala {
     pctx.lineWidth = 5;
     pctx.fillStyle = "red";
 
-    for (let b = 0; b < 30; b++) {
-      pctx.fillStyle = b % 2 === 0 ? "rgb(255, 255, 255)" : "rgb(255, 0, 0)";
+    for (let b = 0; b < 20; b++) {
+      pctx.fillStyle = b % 2 === 0 ? colors[color] : colors[color + 1];
       pctx.beginPath();
       pctx.moveTo(-100 + b * 10, 0);
-      // pctx.lineTo(0 + b * 10, 100);
       pctx.bezierCurveTo(-100 + b * 10, 100, 0 + b * 10, 0, 0 + b * 10, 100);
       pctx.lineTo(100 + b * 10, 100);
       pctx.lineTo(100 + b * 10, 0);
       pctx.closePath();
       pctx.fill();
     }
-
-    // pctx.moveTo(-10, -10);
-    // pctx.bezierCurveTo(0, -50, 0, 50, 110, 110);
 
     let pattern = c.createPattern(patternCanvas, "repeat");
 
