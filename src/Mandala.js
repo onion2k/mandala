@@ -131,7 +131,7 @@ export default class Mandala {
     );
     Fill(this.primitives, c, p.radius * 0.6, colors[color]);
 
-    color = 2;
+    color = 11;
 
     Split(
       this.primitives,
@@ -188,10 +188,17 @@ export default class Mandala {
 
     dotctx.fillStyle = colors[color];
 
-    dotctx.lineWidth = 5;
+    dotctx.lineWidth = 2;
     for (let b = 0; b < 110; b++) {
       dotctx.beginPath();
-      dotctx.arc(5 + (b % 10) * 10, Math.floor(b / 10) * 10, 4, 0, Math.PI * 2);
+      dotctx.arc(
+        5 + (b % 10) * 10,
+        Math.floor(b / 10) * 10 + (b % 2) * 5,
+        3,
+        0,
+        Math.PI * 2
+      );
+      dotctx.stroke();
       dotctx.fill();
       dotctx.closePath();
     }
