@@ -178,12 +178,32 @@ export default class Mandala {
 
     color = 12;
 
+    let dotCanvas = document.createElement("canvas");
+    dotCanvas.width = 100;
+    dotCanvas.height = 100;
+    let dotctx = dotCanvas.getContext("2d");
+
+    dotctx.fillStyle = "white";
+    dotctx.fillRect(0, 0, 100, 100);
+
+    dotctx.fillStyle = colors[color];
+
+    dotctx.lineWidth = 5;
+    for (let b = 0; b < 110; b++) {
+      dotctx.beginPath();
+      dotctx.arc(5 + (b % 10) * 10, Math.floor(b / 10) * 10, 4, 0, Math.PI * 2);
+      dotctx.fill();
+      dotctx.closePath();
+    }
+
+    let dotpattern = c.createPattern(dotCanvas, "repeat");
+
     Petal(
       this.primitives,
       c,
       p.radius * 0.5 + 10,
       widthAtHeight(p.segment, p.radius * 0.5) - 10,
-      colors[color],
+      dotpattern,
       "black"
     );
 
